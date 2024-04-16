@@ -6,3 +6,5 @@
 !init.lua
 !lua/
 !ftplugin/
+
+# comment to test chezmoi
