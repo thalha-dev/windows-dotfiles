@@ -25,10 +25,10 @@ keymap("i", "jk", "<ESC>", opts)
 
 -- Move text up and down
 
-keymap("n", "<A-j>", ":m .+1<CR>==") -- move line up(n)
-keymap("n", "<A-k>", ":m .-2<CR>==") -- move line down(n)
-keymap("v", "<A-j>", ":m '>+1<CR>gv=gv") -- move line up(v)
-keymap("v", "<A-k>", ":m '<-2<CR>gv=gv") -- move line down(v)
+keymap("n", "<leader>(", ":m .+1<CR>==") -- move line up(n)
+keymap("n", "<leader>)", ":m .-2<CR>==") -- move line down(n)
+keymap("v", "<leader>(", ":m '>+1<CR>gv=gv") -- move line up(v)
+keymap("v", "<leader>)", ":m '<-2<CR>gv=gv") -- move line down(v)
 
 ------------------------------------------------------------------------------
 
@@ -287,51 +287,19 @@ keymap("n", "<leader>fvC", "<cmd>FzfLua colorschemes<cr>", opts)
 -- keymap("n", "<leader>fR", "<cmd>Telescope neoclip<cr>", opts)
 -- keymap("n", "<leader>fnn", "<cmd>Telescope notify<cr>", opts)
 
-------------------------------------------------------------------------------
-------------------------------------------------------------------------------
-
--- OLD
-
--- tmux window
-
--- keymap("n", "<leader>ttv", ":!tmux split-window -h<CR><CR>", opts)
--- keymap("n", "<leader>tth", ":!tmux split-window -l 12<CR><CR>", opts)
-------------------------------------------------------------------------------
--- liveServer
-
--- keymap("n", "<leader>lss", ":LiveServer start<CR>", opts)
--- keymap("n", "<leader>lsx", ":LiveServer stop<CR>", opts)
-------------------------------------------------------------------------------
-
--- keymap("n", "<leader>vff", "<cmd>TZFocus<CR>", opts)
--- keymap("n", "<leader>vfm", "<cmd>TZMinimalist<CR>", opts)
--- keymap("n", "<leader>vfn", "<cmd>TZNarrow<CR>", opts)
--- ------------------------------------------------------------------------------
-
--- Switch Tabs
-
--- keymap("n", "<A-h>", ":tabprevious<CR>", opts)
--- keymap("n", "<A-l>", ":tabnext<CR>", opts)
--- keymap("n", "<A-H", ":tabmove -<CR>", opts)
--- keymap("n", "<A-L", ":tabmove +<CR>", opts)
-------------------------------------------------------------------------------
---
--- opts.desc ="open vifm"
--- keymap("n", "<leader><leader>f", "<cmd>Vifm<CR>", opts)
-
--- opts.desc ="open lf"
--- keymap("n", "<leader><leader>F", "<cmd>Lf<CR>", opts)
-
-------------------------------------------------------------------------------
-
 -- GIT
 
--- keymap("n", "<leader>gv", "<cmd>DiffviewOpen<CR>", opts)
--- keymap("n", "<leader>gt", "<cmd>DiffviewToggleFiles<CR>", opts)
--- keymap("n", "<leader>gsb", "<cmd>Gitsigns toggle_current_line_blame<CR>", opts)
--- keymap("n", "<leader>gsB", "<cmd>Gitsigns blame_line<CR>", opts)
--- keymap("n", "<leader>gss", "<cmd>Gitsigns show<CR>", opts)
--- keymap("n", "<leader>gsv", "<cmd>Gitsigns diffthis<CR>", opts)
--- keymap("n", "<leader>gsh", "<cmd>Gitsigns toggle_linehl<CR>", opts)
--- keymap("n", "<leader>gsw", "<cmd>Gitsigns toggle_word_diff<CR>", opts)
--- keymap("n", "<leader>gst", "<cmd>Gitsigns toggle_signs<CR>", opts)
+opts.desc = "Git: toggle current line blame"
+keymap("n", "<leader>gsb", "<cmd>Gitsigns toggle_current_line_blame<CR>", opts)
+opts.desc = "Git: blame current line"
+keymap("n", "<leader>gsB", "<cmd>Gitsigns blame_line<CR>", opts)
+opts.desc = "Git: Gitsigns show"
+keymap("n", "<leader>gss", "<cmd>Gitsigns show<CR>", opts)
+opts.desc = "Git: Gitsigns diffthis"
+keymap("n", "<leader>gsv", "<cmd>Gitsigns diffthis<CR>", opts)
+opts.desc = "Git: toggle line highlight"
+keymap("n", "<leader>gsh", "<cmd>Gitsigns toggle_linehl<CR>", opts)
+opts.desc = "Git: toggle word diff"
+keymap("n", "<leader>gsw", "<cmd>Gitsigns toggle_word_diff<CR>", opts)
+opts.desc = "Git: toggle Gitsigns"
+keymap("n", "<leader>gst", "<cmd>Gitsigns toggle_signs<CR>", opts)
