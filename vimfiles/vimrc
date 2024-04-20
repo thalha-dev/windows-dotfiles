@@ -1,0 +1,105 @@
+syntax enable
+syntax on 
+filetype plugin indent on  " enable file type based indentation.
+set autoindent
+set number
+set hidden
+set noswapfile
+set nowrap
+set nohlsearch
+set termguicolors  
+set incsearch " dynamically move the cursor to the next match.
+set relativenumber
+set background=dark
+set expandtab
+set encoding=UTF-8
+set showmatch				" Show matching brackets
+" set mouse=a					" Enable the mouse
+set scrolloff=8
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set splitbelow splitright
+set ignorecase
+set smartcase
+set wildmenu
+set tags=tags;
+set t_Co=256
+set foldmethod=indent
+
+autocmd BufRead * normal zR
+colorscheme sorbet
+
+
+let mapleader=" "
+
+
+"------------------------------------------------------> General Remapping
+"
+inoremap jk <esc>
+vnoremap <leader>y "+y
+nnoremap <leader>yc gg"+yG
+nnoremap <leader>yy ggVGy
+
+"------------------------Find and Replace
+"
+nnoremap <leader>vfr :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+nnoremap <leader>v; /\<<C-r><C-w>\><Left><Left>
+
+vnoremap p "_dP
+
+
+
+"---------------------- Remap splits navigation to just CTRL + hjkl
+"
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+"------------------------------------------------- Make adjusing split sizes a bit more friendly
+"
+noremap <silent> <A-C-l> :vertical resize +8<CR>
+noremap <silent> <A-C-h> :vertical resize -4<CR>
+noremap <silent> <A-C-j> :resize +8<CR>
+noremap <silent> <A-C-k> :resize -4<CR>
+
+"------------------------------ Change 2 split windows from vert to horiz or horiz to vert
+"
+nnoremap <leader>th <C-w>t<C-w>H
+nnoremap <leader>tk <C-w>t<C-w>K
+
+
+"-----------------------Vim Help
+"
+nnoremap <leader>vwh :h <C-R>=expand("<cword>")<CR><CR>
+
+
+"---------------------------Colorsceme
+"
+noremap <leader>vcc :colorscheme 
+
+
+
+"------------Spell Checker
+"
+noremap <leader>vsc <cmd>setlocal spell<cr>
+noremap <leader>vsx <cmd>set nospell<cr>
+
+"----------------------------------------------------COMMANDS REMAP
+"
+command! Bd :bp | :sp | :bn | :bd  " Close buffer without closing window.
+
+
+"--------------------------normal mode remap
+"
+nnoremap ; :
+
+
+"--------------------------command mode remap
+"
+command! DD :bp | :sp | :bn | :bd  " Close buffer without closing window.
+
+
+"-------------------------jk to escape command mode
+"
+cnoremap jk <c-u><del>
