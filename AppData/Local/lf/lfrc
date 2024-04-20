@@ -1,0 +1,35 @@
+set incsearch true                 # jump to first match after each keystroke in searc
+set incfilter true                 # apply filter after each keystroke
+set smartcase                      # if capital letter then case sensitive
+set scrolloff 10                   # leave some space at the top and the bottom of the screen
+set hidden true
+set dircounts true                 # show number of items in directory instead of sie
+set drawbox true                   # draw a border around all panes
+set info "size"                    # list directory information on the right
+set period 1                       # interval to check for directory updates
+
+
+cmd EditWithNvim $nvim $Env:f.Trim('"')
+
+
+map o
+map d
+
+map e EditWithNvim
+
+map DDDD delete
+map p paste
+map x cut
+map y copy
+map R reload
+map ; push :
+cmd q quit
+cmd qa quit
+
+# Movement 
+map gD cd ~/Documents
+map gd cd ~/Downloads
+map gp cd ~/Pictures
+map gv cd ~/Videos
+map gc cd ~/.local\share\chezmoi
+map gh cd ~ 
