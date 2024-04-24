@@ -1,3 +1,4 @@
+set filesep " "
 set incsearch true                 # jump to first match after each keystroke in searc
 set incfilter true                 # apply filter after each keystroke
 set smartcase                      # if capital letter then case sensitive
@@ -10,12 +11,31 @@ set period 1                       # interval to check for directory updates
 
 
 cmd EditWithNvim $nvim $Env:f.Trim('"')
+map e EditWithNvim
 
+cmd rename %sh -c 'mv -i %f% $0'
+map r push :rename<space>
+
+# use a and A to create files and directories
+cmd createfile %sh -c 'echo > $0'
+cmd createdir %sh -c 'mkdir $0'
+map a push :createfile<space>
+map A push :createdir<space>
+
+# open explorer in current directory
+map S push &start.<enter>
+
+# copy file path
+map Y %echo %fx% | clip 
+
+# archive management
+cmd zip %sh -c '7z a $0 %fx%'
+cmd extract_here %sh -c '7z e %f%'
+cmd extract_to %sh -c '7z e %f% -o$0'
 
 map o
 map d
 
-map e EditWithNvim
 
 map DDDD delete
 map p paste
