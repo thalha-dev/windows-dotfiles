@@ -131,21 +131,21 @@ return {
       })
 
 
-      require('java').setup()
-      lspconfig.jdtls.setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-      })
-
-      -- local function root_dir()
-      --   return vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1])
-      -- end
+      -- require('java').setup()
       -- lspconfig.jdtls.setup({
-      --   cmd = { 'C:\\Users\\thalha\\AppData\\Local\\nvim-data\\mason\\bin\\jdtls.cmd' },
-      --   root_dir = root_dir,
       --   capabilities = capabilities,
       --   on_attach = on_attach,
       -- })
+
+      local function root_dir()
+        return vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1])
+      end
+      lspconfig.jdtls.setup({
+        cmd = { 'C:\\Users\\thalha\\AppData\\Local\\nvim-data\\mason\\bin\\jdtls.cmd' },
+        root_dir = root_dir,
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
 
       lspconfig.omnisharp.setup({
         on_attach = on_attach,
