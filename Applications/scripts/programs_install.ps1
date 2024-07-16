@@ -44,6 +44,7 @@ winget install -e --id Git.Git --silent
 winget install -e --id Microsoft.VisualStudioCode --silent
 winget install -e --id Microsoft.PowerBI --silent
 winget install -e --id LGUG2Z.komorebi --silent
+winget install GlazeWM --silent
 
 # ----------------------------------------------------
 #                  CHOCOLATEY PROGRAMS
