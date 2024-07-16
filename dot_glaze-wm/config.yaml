@@ -35,7 +35,7 @@ gaps:
 focus_borders:
   active:
     enabled: true
-    color: "#0000ff"
+    color: "#6b6b6b"
 
   inactive:
     enabled: false
@@ -228,7 +228,7 @@ keybindings:
 
   # Launch CMD terminal (alternatively `exec wt` or `exec %ProgramFiles%/Git/git-bash.exe`
   # to start Windows Terminal and Git Bash respectively.
-  - command: "exec pwsh"
+  - command: "exec wt.exe"
     binding: "Alt+Enter"
 
   # Focus the workspace that last had focus.
