@@ -5,7 +5,7 @@ rules = [
 	{ mime = "image/*", fg = "yellow" },
 
 	# Media
-	{ mime = "{audio,video}/*", fg = "magenta" },
+	{ mime = "{audio,video}/*", fg = "white" },
 
 	# Archives
 	{ mime = "application/{,g}zip", fg = "red" },
