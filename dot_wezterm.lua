@@ -86,8 +86,8 @@ keys = {
 		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
 	},
 	{ key = "w", mods = "LEADER", action = act.CloseCurrentTab({ confirm = true }) },
-	{ key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
-	{ key = "Tab", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(-1) },
+	{ key = ".", mods = "ALT", action = act.ActivateTabRelative(1) },
+	{ key = ",", mods = "ALT", action = act.ActivateTabRelative(-1) },
 
 	-- PANES
 

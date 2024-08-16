@@ -91,7 +91,7 @@ function ffnro {
 
 # yazi
 
-function yy {
+function f {
     $tmp = [System.IO.Path]::GetTempFileName()
     yazi $args --cwd-file="$tmp"
     $cwd = Get-Content -Path $tmp
