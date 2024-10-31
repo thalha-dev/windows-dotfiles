@@ -1,0 +1,22 @@
+set incsearch
+set history=1000
+set ignorecase
+set smartcase
+set number
+set number relativenumber
+set scrolloff=8
+
+
+let mapleader=" "
+
+"------------------------------------------------------> General Remapping
+"
+inoremap jk <esc>
+vnoremap <leader>y "+y
+nnoremap <leader>yc gg"+yG
+nnoremap <leader>yy ggVGy
+nnoremap ; :
+cnoremap jk <c-u><del>
+nnoremap <leader>rvc :source ~/.ideavimrc<CR>
+" nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
