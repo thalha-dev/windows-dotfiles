@@ -62,6 +62,32 @@ config.window_padding = {
 config.disable_default_key_bindings = true
 config.leader = { key = "a", mods = "ALT", timeout_milliseconds = 2000 }
 
+config.window_background_opacity = 0.8
+config.prefer_egl = true
+-- config.win32_system_backdrop = 'Acrylic'
+
+wezterm.on("toggle-opacity", function(window, pane)
+	local overrides = window:get_config_overrides() or {}
+	if overrides.window_background_opacity == 0.8 then
+		overrides.window_background_opacity = 1
+	else
+		overrides.window_background_opacity = 0.8
+	end
+	window:set_config_overrides(overrides)
+end)
+
+-- wezterm.on("decrease-opacity", function(window, pane)
+-- 	local overrides = window:get_config_overrides() or {}
+-- 	overrides.window_background_opacity = overrides.window_background_opacity - 0.2
+-- 	window:set_config_overrides(overrides)
+-- end)
+--
+-- wezterm.on("increase-opacity", function(window, pane)
+-- 	local overrides = window:get_config_overrides() or {}
+-- 	overrides.window_background_opacity = overrides.window_background_opacity + 0.2
+-- 	window:set_config_overrides(overrides)
+-- end)
+
 keys = {
 
 	-- TABS
@@ -126,6 +152,19 @@ keys = {
 		key = "l",
 		action = wezterm.action.ActivatePaneDirection("Right"),
 	},
+ 	{
+		mods = "LEADER",
+		key = "o",
+		action = wezterm.action.EmitEvent("toggle-opacity"),
+	},
+ -- 	{
+ --    key = "<", mods = "ALT",
+	-- 	action = wezterm.action.EmitEvent("decrease-opacity"),
+	-- },
+ -- 	{
+ --    key = ">", mods = "ALT",
+	-- 	action = wezterm.action.EmitEvent("increase-opacity"),
+	-- },
 	{
 		mods = "CTRL",
 		key = "LeftArrow",
@@ -279,9 +318,7 @@ config.colors = {
 }
 
 config.use_fancy_tab_bar = false
-config.window_background_opacity = 0.6
 config.window_decorations = "RESIZE"
-config.win32_system_backdrop = "Acrylic"
 config.launch_menu = launch_menu
 config.keys = keys
 
