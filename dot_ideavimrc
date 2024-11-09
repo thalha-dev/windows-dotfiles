@@ -44,12 +44,8 @@ nnoremap <leader>yap :action CopyAbsolutePath<CR>
 nnoremap <leader>yrp :action CopyContentRootPath<CR>
 
 " Terminal
-nnoremap <leader>tt :action ActivateTerminalToolWindow<CR>
-nnoremap <leader>tn :action Terminal.OpenInTerminal<CR>
-
-" Distraction Free
-map <leader>tdf :action ToggleDistractionFreeMode<CR>
-
+nnoremap <leader>tr :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>tc :action Terminal.OpenInTerminal<CR>
 
 " Window navigation
 nnoremap <c-h> <c-w>h
@@ -110,7 +106,7 @@ nmap <leader>gct <Action>(ActivateCommitToolWindow)
 nmap <leader>fe <action>(SearchEverywhere)
 nmap <leader>ff <action>(GotoFile)
 nmap <leader>fp <action>(FindInPath)
-nmap <leader>ffp <Action>(RecentProjectListGroup)
+nmap <leader>fP <Action>(RecentProjectListGroup)
 nmap <leader>fl <action>(RecentLocations)
 nmap <leader>fu <action>(ShowUsages)
 nmap <leader>fs :action FileStructurePopup<CR>
