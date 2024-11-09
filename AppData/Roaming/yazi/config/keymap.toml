@@ -151,6 +151,10 @@ keymap = [
 	# Help
 	{ on = "~",    run = "help", desc = "Open help" },
 	{ on = "<F1>", run = "help", desc = "Open help" },
+
+	# Shell Script
+	# { on = [ "b", "b" ], run = 'Set-Wallpaper.ps1 -wallpaperPath "%0"',     desc = "Set the wallpaper" },
+  # { on = [ "b", "b" ], run = 'Set-Wallpaper.ps1  "%0"', orphan = true, desc = "Set the wallpaper" }
 ]
 
 [tasks]

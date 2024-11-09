@@ -1,22 +1,270 @@
-set incsearch
-set history=1000
-set ignorecase
-set smartcase
-set number
-set number relativenumber
-set scrolloff=8
+set incsearch " enable incremental search
+set history=5000 " increase history
+set ignorecase " ignore case when searching
+set smartcase " ignore case if search pattern is all lowercase, case-sensitive otherwise
+set number " set line numbers
+"set number relativenumber " set relative line numbers
+set scrolloff=8 " set 8 lines to the cursor - when moving vertically using j/k
+set visualbell " disable visual bell
+set noerrorbells " disable error bells
+set highlightedyank " highlight yank region
+set NERDTree " enable NERDTree plugin
+set surround " enable surround plugin
+set which-key " enable which-key
+set notimeout " disable the timeout option
+set timeoutlen=5000 " increase the timeoutlen (default: 1000), don't add space around the equal sign
+"sethandler <c-j> a:vim " set handler for <c-j>
+"sethandler <c-k> a:vim " set handler for <c-k>
+" set ideamarks " enable marks
+" set idearefactormode=normal
+" set ideastatusicon=gray
+
 
 
 let mapleader=" "
 
 "------------------------------------------------------> General Remapping
 "
+
+" escape
+cnoremap jk <c-u><del>
 inoremap jk <esc>
+
+" remap Keys
+nnoremap ; :
+
+" Reload VimRc
+nnoremap <leader>rvc :action IdeaVim.ReloadVimRc.reload<CR>
+
+" yank
 vnoremap <leader>y "+y
 nnoremap <leader>yc gg"+yG
 nnoremap <leader>yy ggVGy
-nnoremap ; :
-cnoremap jk <c-u><del>
-nnoremap <leader>rvc :source ~/.ideavimrc<CR>
-" nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
-nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
+nnoremap <leader>yap :action CopyAbsolutePath<CR>
+nnoremap <leader>yrp :action CopyContentRootPath<CR>
+
+" Terminal
+nnoremap <leader>tt :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>tn :action Terminal.OpenInTerminal<CR>
+
+" Distraction Free
+map <leader>tdf :action ToggleDistractionFreeMode<CR>
+
+
+" Window navigation
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+
+" Window splits
+nmap <leader>wsv <Action>(SplitVertically)
+nmap <leader>wsh <Action>(SplitHorizontally)
+nmap <leader>wsu <Action>(Unsplit)
+nmap <leader>wss <Action>(MoveEditorToOppositeTabGroup)
+nmap <leader>wsU <Action>(UnsplitAll)
+
+" Tab
+nnoremap <s-h> :action PreviousTab<CR>
+nnoremap <s-l> :action NextTab<CR>
+
+" NERDTree navigation
+nnoremap <leader>nn :NERDTree<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
+
+" Easy visual indentation
+vnoremap < <gv
+vnoremap > >gv
+
+" Comment lines
+map <leader>cc <action>(CommentByLineComment)
+
+" Popup navigation
+imap <c-n> <Action>(EditorDown)
+imap <c-p> <Action>(EditorUp)
+
+" Folding regions
+nnoremap <leader>re :action ExpandRegion<CR>
+nnoremap <leader>rc :action CollapseRegion<CR>
+nnoremap <leader>rae :action ExpandAllRegions<CR>
+nnoremap <leader>rac :action CollapseAllRegions<CR>
+
+" Code Actions
+nmap <Leader>ch <Action>(ShowErrorDescription)
+nmap <leader>ca <Action>(ShowIntentionActions)
+nmap <leader>cr :action Refactorings.QuickListPopupAction<CR>
+nmap <Leader>cf :action ReformatCode<CR>
+vmap <Leader>cf :action ReformatCode<CR>
+nmap <leader>coi :action OptimizeImports<CR>
+nmap <leader>csr :action GotoRelated<CR>
+
+" Git
+nmap <leader>gt <Action>(ActivateVersionControlToolWindow)
+nmap <leader>gb <Action>(Git.Branches)
+nmap <leader>gm <Action>(VcsGroups)
+nmap <leader>gf <Action>(Git.Fetch)
+nmap <leader>ga <Action>(Annotate)
+nmap <leader>gct <Action>(ActivateCommitToolWindow)
+
+" Fuzzy Find
+nmap <leader>fe <action>(SearchEverywhere)
+nmap <leader>ff <action>(GotoFile)
+nmap <leader>fp <action>(FindInPath)
+nmap <leader>ffp <Action>(RecentProjectListGroup)
+nmap <leader>fl <action>(RecentLocations)
+nmap <leader>fu <action>(ShowUsages)
+nmap <leader>fs :action FileStructurePopup<CR>
+nmap <leader>ft <action>(ToolWindowsGroup)
+nmap <leader>fd <Action>(ActivateProblemsViewToolWindow)
+nmap <leader>fT <Action>(ActivateTODOToolWindow)
+nmap <leader>fm <Action>(ChangeView)
+
+
+" Code Navigation
+nnoremap [[ :action MethodUp<CR>
+nnoremap ]] :action MethodDown<CR>
+nnoremap <leader>] :action GotoNextError<CR>
+nnoremap <leader>[ :action GotoPreviousError<CR>
+nnoremap ,l $
+nnoremap ,h ^
+vnoremap ,l $
+vnoremap ,h ^
+
+" Debugging
+nmap <leader>dx <Action>(Debug)
+nmap <leader>db <Action>(ToggleLineBreakpoint)
+nmap <leader>dv <Action>(ViewBreakpoints)
+nmap <leader>dc <Action>(ContextDebug)
+nmap <leader>dt <Action>(ActivateDebugToolWindow)
+nmap <leader>do <Action>(StepOver)
+nmap <leader>di <Action>(StepInto)
+nmap <leader>dr <Action>(Resume)
+nmap <leader>de <Action>(EditBreakpoint)
+nmap <leader>dm <Action>(XDebugger.MuteBreakpoints)
+nmap <leader>dC <Action>(RunToCursor)
+nmap <leader>dr <Action>(Resume)
+nmap <leader>dR <Action>(EvaluateExpression)
+
+" vim
+nmap <leader><leader>vt <Action>(VimPluginToggle)
+
+" quit
+nmap <leader>qc <Action>(CloseAllEditorsButActive)
+nmap <leader>qp :action CloseProject<CR>
+
+
+if has('ide')
+  if &ide =~? 'intellij idea'
+    if &ide =~? 'community'
+      " some mappings and options for IntelliJ IDEA Community Edition
+      nnoremap <leader><leader>nc :action NewClass<CR>
+
+      " Run
+      nnoremap <leader><leader>rC :action RunConfiguration<CR>
+      nnoremap <leader><leader>rr :action Run<CR>
+      nnoremap <leader><leader>rc :action RunClass<CR>
+    elseif &ide =~? 'ultimate'
+      " some mappings and options for IntelliJ IDEA Ultimate Edition
+    endif
+  endif
+endif
+
+
+
+" AVAILABLE ACTIONS
+"
+"<Action>(GotoDeclaration)
+"<Action>(GotoTypeDeclaration)
+"<Action>(GotoImplementation)
+"<Action>(GotoTest)
+"<Action>(Back)
+"<Action>(Forward)
+"<Action>(RenameElement)
+"<Action>(ExtractMethod)
+"<Action>(IntroduceVariable)
+"<Action>(IntroduceField)
+"<Action>(ChangeSignature)
+"<Action>(Refactorings.QuickListPopupAction)
+"<action>(RecentFiles)
+"<action>(NewScratchFile)
+"<Action>(CheckinProject)
+":action EditSourceInNewWindow<CR>
+":action NextWindow<CR>
+":action LocalHistory.ShowHistory<CR>
+":action CallHierarchy<CR>
+":action ShowNavBar<CR>
+":action GotoSymbol<CR>
+":action GotoClass<CR>
+":action GotoImplementation<CR>
+":action GotToDeclaration<CR>
+":action GotToSuperMethod<CR>
+":action GotoTest<CR>
+":action Back<CR>
+":action Forward<CR>
+":action JumpToLastWindow<CR>
+":action HideAllWindows<CR>
+":action ContextRun<CR>
+":action RunClass<CR>
+":action ChooseRunConfiguration<CR>
+":action ActivateRunToolWindow<CR>
+":action Rerun<CR>
+"<Action>(SearchAction)
+""" Run
+"<Action>(RunClass)
+"Action>(ChooseRunConfiguration)
+"Action>(Stop)
+"Action>(Rerun)
+"Action>(DebugClass)
+"Action>(ImportTests)
+"Action>(RunMenu)
+"Action>(RerunFailedTests)
+"<Action>(ActivateFindToolWindow)
+"<Action>(VimFindActionIdAction)
+
+""""""""""""""""""""""""""""""""""""""SQL""""""""""""""""""""""""""""""""""""""
+":action Console.Transaction.Commit<CR>
+":action Console.Transaction.Rollback<CR>
+":action Console.Jdbc.Execute<CR>
+"Open the database log window, provided the MyBatis Log Plugin is installed
+":action TailMyBatisLog0<CR>:action ActivateMyBatisLogToolWindow<CR>
+""""""""""""""""""""""""""""""""""""""Run""""""""""""""""""""""""""""""""""""""
+":action Debug<CR>
+":action DebugClass<CR>
+":action Coverage<CR>
+":action RunCoverage<CR>
+":action Stop<CR>
+""""""""""""""""""""""""""""""""""""""Debug""""""""""""""""""""""""""""""""""""""
+":action ToggleLineBreakpoint<CR>
+":action QuickEvaluateExpression <CR>
+":action EvaluateExpression <CR>
+":action Debugger.ForceEarlyReturn<CR>
+":action Debugger.AddToWatch<CR>
+":action ForceRunToCursor<CR>
+":action Hotswap<CR>
+":action JRebel Debug<CR>
+":action Debugger.RemoveAllBreakpointsInFile<CR>
+":action Debugger.RemoveAllBreakpoints<CR>
+":action Debugger.PopFrame<CR>
+":action ShowExecutionPoint<CR>
+":action StreamTracerAction<CR>
+":action XDebugger.MuteBreakpoints<CR>
+""""""""""""""""""""""""""""""""""""""Refactoring""""""""""""""""""""""""""""""""""""""
+":action RenameElement<CR>
+":action Move<CR>
+":action MakeStatic<CR>
+":action ConvertToInstanceMethod<CR>
+":action Inline<CR>
+":action ExtractMethod<CR>
+":action ExtractInterface<CR>
+":action EncapsulateFields<CR>
+":action ReplaceMethodWithMethodObject<CR>
+":action IntroduceVariable<CR>
+":action IntroduceConstant<CR>
+":action IntroduceParameter<CR>
+":action IntroduceField<CR>
+":action IntroduceParameterObject<CR>
+":action MemberPushDown<CR>
+":action MembersPullUp<CR>
+":action RenameFile<CR>
+":action ChangeSignature<CR>
+":action AnonymousToInner<CR>
