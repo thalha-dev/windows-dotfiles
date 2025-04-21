@@ -104,26 +104,26 @@ function f {
 
 ## VISUAL STUDIO
 
-function Invoke-VSIXInstaller {
-  $ErrorActionPreference = 'Stop'
-
-  $path = vswhere -latest -prerelease -products * -property enginePath | Join-Path -ChildPath 'VSIXInstaller.exe'
-
-  if (Test-Path $path) {
-    & $path $args
-  }
-}
-
-function Invoke-VSTest {
-  $ErrorActionPreference = 'Stop'
-
-  $path = vswhere -latest -products * -requires Microsoft.VisualStudio.Workload.ManagedDesktop Microsoft.VisualStudio.Workload.Web -requiresAny -property installationPath
-  $path = join-path $path 'Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe'
-
-  if (test-path $path) {
-    & $path $args
-  }
-}
+# function Invoke-VSIXInstaller {
+#   $ErrorActionPreference = 'Stop'
+#
+#   $path = vswhere -latest -prerelease -products * -property enginePath | Join-Path -ChildPath 'VSIXInstaller.exe'
+#
+#   if (Test-Path $path) {
+#     & $path $args
+#   }
+# }
+#
+# function Invoke-VSTest {
+#   $ErrorActionPreference = 'Stop'
+#
+#   $path = vswhere -latest -products * -requires Microsoft.VisualStudio.Workload.ManagedDesktop Microsoft.VisualStudio.Workload.Web -requiresAny -property installationPath
+#   $path = join-path $path 'Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe'
+#
+#   if (test-path $path) {
+#     & $path $args
+#   }
+# }
 
 
 ## OTHERS
